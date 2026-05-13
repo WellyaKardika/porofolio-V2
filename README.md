@@ -31,12 +31,5 @@ A modern, high-end 3D creator & developer portfolio built with React and Vite. F
    ```bash
    npm run dev
    ```
-
-## 📬 Contact
-
-- **GitHub**: [@WellyaKardika](https://github.com/WellyaKardika)
-- **LinkedIn**: [Wellya Kardika](https://www.linkedin.com/in/wellyakardika/)
-- **Instagram**: [@wellyakardikaa](https://www.instagram.com/wellyakardikaa/)
-
 ---
 *Bringing your vision to life, one line of code at a time.*
