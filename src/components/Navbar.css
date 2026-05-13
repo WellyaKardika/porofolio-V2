@@ -1,0 +1,179 @@
+/* ─── Import Font ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Mono:wght@300;400&display=swap');
+
+/* ─── CSS Variables ───────────────────────────────────────── */
+:root {
+  --nav-bg: rgba(12, 12, 12, 0);
+  --nav-bg-scrolled: rgba(12, 12, 12, 0.92);
+  --nav-border: rgba(255, 255, 255, 0.06);
+  --text-primary: #D7E2EA;
+  --text-muted: rgba(215, 226, 234, 0.6);
+  --accent: #BBCCD7;
+  --font-display: 'Kanit', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --nav-height: 80px;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Navbar ──────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: transparent;
+  mix-blend-mode: difference;
+  pointer-events: none; /* Let clicks pass through empty areas */
+}
+
+.navbar > * {
+  pointer-events: auto; /* Re-enable clicks for logo and hamburger */
+}
+
+/* ─── Logo ────────────────────────────────────────────────── */
+.navbar__logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  position: relative;
+  transition: color var(--transition);
+  text-transform: uppercase;
+}
+
+.navbar__logo-dot {
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 0;
+  vertical-align: -0.1em;
+}
+
+/* ─── Hamburger ───────────────────────────────────────────── */
+.navbar__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition), width var(--transition);
+  transform-origin: center;
+}
+
+/* Asymmetric styling like Angga */
+.navbar__hamburger span:nth-child(2) {
+  width: 20px;
+  align-self: flex-end;
+}
+
+.navbar__hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.navbar__hamburger.open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.navbar__hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ─── Full Screen Overlay ─────────────────────────────────── */
+.navbar__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0C0C0C;
+  z-index: 105;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.navbar__drawer-link {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 15px 20px; 
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color var(--transition);
+}
+
+.navbar__drawer-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  background: #f3f3f3;
+  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.navbar__drawer-link:hover {
+  color: #0C0C0C;
+}
+
+.navbar__drawer-link:hover::before {
+  top: 0;
+}
+
+.navbar__drawer-link:hover .navbar__link-id {
+  color: #646973;
+}
+
+.navbar__link-id {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 400;
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 24px;
+  }
+}
