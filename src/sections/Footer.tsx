@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
         {/* Bottom Left */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
           <img 
-            src="/logo black.webp" 
+            src="/logo-black.webp" 
             alt="Wellya Logo" 
             className="h-10 sm:h-12 object-contain" 
             draggable={false}

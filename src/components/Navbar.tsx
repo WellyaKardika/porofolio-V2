@@ -54,7 +54,7 @@ export default function Navbar() {
     <>
       <nav className="navbar">
         <a href="/" className="navbar__logo">
-          WK<span className="navbar__logo-dot">.</span>
+          <img src="/logo white.png" alt="Wellya Logo" className="h-6 sm:h-8 object-contain" draggable={false} />
         </a>
 
         {/* Hamburger */}
