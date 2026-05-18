@@ -78,7 +78,7 @@
   height: 2px;
   background: #fff;
   border-radius: 2px;
-  transition: transform var(--transition), opacity var(--transition), width var(--transition);
+  transition: transform var(--transition), opacity var(--transition), background-color var(--transition);
   transform-origin: center;
 }
 
@@ -86,6 +86,7 @@
 .navbar__hamburger span:nth-child(2) {
   width: 20px;
   align-self: flex-end;
+  transform-origin: right center;
 }
 
 .navbar__hamburger.open span:nth-child(1) {
@@ -93,7 +94,7 @@
 }
 .navbar__hamburger.open span:nth-child(2) {
   opacity: 0;
-  width: 0;
+  transform: scaleX(0);
 }
 .navbar__hamburger.open span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
