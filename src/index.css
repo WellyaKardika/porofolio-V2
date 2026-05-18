@@ -16,9 +16,6 @@ html {
   scroll-behavior: smooth;
 }
 
-img, video {
-  filter: grayscale(100%);
-}
 
 .hero-heading {
   background: linear-gradient(180deg, #FFFFFF 0%, #E6E6E6 100%);

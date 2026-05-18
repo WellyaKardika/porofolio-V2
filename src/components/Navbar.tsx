@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useTransition } from "./TransitionContext";
+import Button from "./Button";
 import "./Navbar.css";
 
 const navLinks = [
-  { id: "01", label: "About", href: "#about" },
-  { id: "02", label: "Services", href: "#services" },
-  { id: "03", label: "Projects", href: "#projects" },
-  { id: "04", label: "Contact", href: "#contact" },
+  { id: "01", label: "GitHub", href: "https://github.com/WellyaKardika" },
+  { id: "02", label: "Instagram", href: "https://www.instagram.com/wellyakardikaa/" },
+  { id: "03", label: "Linkedin", href: "https://www.linkedin.com/in/wellyakardika/" },
+  { id: "04", label: "Mail", href: "mailto:kardikawellya@gmail.com" },
 ];
 
 export default function Navbar() {
@@ -17,6 +19,7 @@ export default function Navbar() {
   const linksRef = useRef<HTMLUListElement>(null);
 
   const { contextSafe } = useGSAP({ scope: overlayRef });
+  const { navigateWithTransition } = useTransition();
 
   const toggleMenu = contextSafe(() => {
     if (!menuOpen) {
@@ -30,6 +33,11 @@ export default function Navbar() {
         linksRef.current?.querySelectorAll(".navbar__drawer-link") || [],
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.3, ease: "power2.out" }
+      );
+      gsap.fromTo(
+        overlayRef.current?.querySelector(".btn-cv-anim") || null,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, delay: 0.6, ease: "power2.out" }
       );
     } else {
       gsap.to(overlayRef.current, {
@@ -50,23 +58,30 @@ export default function Navbar() {
     });
   });
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigateWithTransition('/');
+  };
+
   return (
     <>
       <nav className="navbar">
-        <a href="/" className="navbar__logo">
+        <a href="/" onClick={handleLogoClick} className="navbar__logo">
           <img src="/logo white.png" alt="Wellya Logo" className="h-6 sm:h-8 object-contain" draggable={false} />
         </a>
 
-        {/* Hamburger */}
-        <button
-          className={`navbar__hamburger ${menuOpen ? "open" : ""}`}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        <div className="flex items-center gap-4 sm:gap-6">
+          {/* Hamburger */}
+          <button
+            className={`navbar__hamburger ${menuOpen ? "open" : ""}`}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </nav>
 
       {/* Full Screen Overlay */}
@@ -79,6 +94,8 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
+                target="_blank"
+                
                 href={link.href}
                 className="navbar__drawer-link"
                 onClick={closeMenu}
@@ -89,6 +106,16 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+
+        {/* My CV Button */}
+        <div className="btn-cv-anim absolute bottom-10 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-10 z-10 mix-blend-difference">
+          <Button 
+            href="/cv.pdf" 
+            className="!border-white/20 hover:!border-white text-white"
+          >
+            My CV
+          </Button>
+        </div>
       </div>
     </>
   );

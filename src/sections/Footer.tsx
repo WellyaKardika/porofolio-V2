@@ -6,6 +6,7 @@ const socialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/wellyakardika/' },
   { label: 'Instagram', href: 'https://www.instagram.com/wellyakardikaa/' },
   { label: 'Email', href: 'mailto:@kardikawellya@gmail.com' },
+  { label: 'My CV', href: '/cv.pdf' },
 ];
 
 const Footer: React.FC = () => {
@@ -26,38 +27,45 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Section - Logo, Copyright, Socials */}
-      <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 xl:gap-0">
-        
-        {/* Bottom Left */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
-          <img 
-            src="/logo-black.webp" 
-            alt="Wellya Logo" 
-            className="h-10 sm:h-12 object-contain" 
-            draggable={false}
-          />
-          <p className="text-[#646973] font-light text-sm sm:text-base">
-            Copyright © 2026 Wellya Kardika | All Rights Reserved
-          </p>
+      <RevealText delay={0.2} duration={0.8} margin="0px 0px -50px 0px">
+        <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 xl:gap-0">
+          
+          {/* Bottom Left */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+            <img 
+              src="/logo-black.webp" 
+              alt="Wellya Logo" 
+              className="h-10 sm:h-12 object-contain" 
+              draggable={false}
+            />
+            <p className="text-[#646973] font-light text-sm sm:text-base">
+              Copyright © 2026 Wellya Kardika | All Rights Reserved
+            </p>
+          </div>
+
+          {/* Bottom Right (Social Links) */}
+          <div className="flex flex-col items-start xl:items-end gap-4">
+            <p className="text-[#646973] font-medium text-sm sm:text-base uppercase tracking-wider">
+              Get in touch
+            </p>
+            <ul className="flex flex-wrap gap-6 sm:gap-8 md:gap-10">
+              {socialLinks.map((link) => (
+                <li key={link.label}>
+                  <a 
+                    href={link.href} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-[#0C0C0C] hover:opacity-60 transition-opacity font-medium text-sm sm:text-base"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
         </div>
-
-        {/* Bottom Right (Social Links) */}
-        <ul className="flex flex-wrap gap-6 sm:gap-8 md:gap-10">
-          {socialLinks.map((link) => (
-            <li key={link.label}>
-              <a 
-                href={link.href} 
-                target="_blank" 
-                rel="noreferrer"
-                className="text-[#0C0C0C] hover:opacity-60 transition-opacity font-medium text-sm sm:text-base"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-      </div>
+      </RevealText>
     </footer>
   );
 };

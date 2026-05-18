@@ -10,33 +10,33 @@ interface ServiceItem {
 const services: ServiceItem[] = [
   {
     number: '01',
-    name: '3D Modeling',
+    name: 'Frontend Development',
     description:
-      'Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.',
+      'Building responsive, interactive, and fast user interfaces using modern web technologies like React, Next.js, and Tailwind CSS.',
   },
   {
     number: '02',
-    name: 'Rendering',
+    name: 'WordPress Development',
     description:
-      'High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.',
+      'Creating easily manageable CMS websites with custom themes, plugins, and modern page builders like Elementor.',
   },
   {
     number: '03',
-    name: 'Motion Design',
+    name: 'Responsive Design',
     description:
-      'Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.',
+      'Ensuring your website looks and functions perfectly across all devices and screen sizes, from mobile phones to large desktops.',
   },
   {
     number: '04',
-    name: 'Branding',
+    name: 'UI/UX Implementation',
     description:
-      'Crafting cohesive visual identities — from logos to full brand systems — that communicate a clear and memorable presence.',
+      'Translating design mockups into pixel-perfect code, complete with smooth animations and dynamic interactions.',
   },
   {
     number: '05',
-    name: 'Web Design',
+    name: 'Web Optimization',
     description:
-      'Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.',
+      'Improving website speed, performance, and basic SEO to provide the best possible experience for your users.',
   },
 ];
 
