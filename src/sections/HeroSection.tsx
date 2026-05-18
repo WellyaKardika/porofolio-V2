@@ -5,7 +5,7 @@ import Button from '../components/Button';
 const HeroSection: React.FC = () => {
   return (
     <section
-      className="h-screen flex flex-col relative"
+      className="h-[100dvh] flex flex-col relative"
       style={{ overflowX: 'clip', backgroundColor: '#0C0C0C' }}
     >
       {/* Hero Heading */}
@@ -29,9 +29,9 @@ const HeroSection: React.FC = () => {
 
 
       {/* Bottom Bar */}
-      <div className="mt-auto flex justify-between items-end px-6 md:px-10 pb-7 sm:pb-8 md:pb-10 relative z-20">
+      <div className="mt-auto flex justify-between items-end px-6 md:px-10 pb-16 sm:pb-8 md:pb-10 relative z-20">
         {/* Left: tagline */}
-        <RevealText delay={0.35} duration={0.8}>
+        <RevealText delay={0.5} duration={0.8}>
           <p
             className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[300px]"
             style={{ fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)' }}
