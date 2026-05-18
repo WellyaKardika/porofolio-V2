@@ -19,7 +19,7 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
         className="group cursor-pointer flex flex-col"
         onClick={handleProjectClick}
       >
-        <div className="relative overflow-hidden mb-6 md:mb-8 bg-zinc-900 aspect-[4/2]">
+        <div className="relative overflow-hidden mb-6 md:mb-8 bg-zinc-900 aspect-[16/9]">
           <img
             src={project.thumbnail}
             alt={project.name}
@@ -92,7 +92,7 @@ const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Right Column (Odd Indexes) */}
-        <div className="flex flex-col md:mt-[calc(50%)] lg:mt-[calc(50%)]">
+        <div className="flex flex-col md:mt-[calc(60%)] lg:mt-[calc(60%)]">
           {projects.filter((_, i) => i % 2 !== 0).map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index * 2 + 1} />
           ))}

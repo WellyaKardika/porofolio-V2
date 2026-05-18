@@ -22,13 +22,10 @@ export const projects: ProjectData[] = [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
     ],
-    thumbnail: '/Project/Watercress-Bali/imgi_2_image.webp',
-    heroImage: '/Project/Watercress-Bali/imgi_1_image.webp',
+    thumbnail: '/Project/Watercress-Bali/WTC-1.webp',
+    heroImage: '/Project/Watercress-Bali/WTC-1.webp',
     gallery: [
-      '/Project/Watercress-Bali/imgi_3_image.webp',
-      '/Project/Watercress-Bali/imgi_4_image.webp',
-      '/Project/Watercress-Bali/imgi_5_image.webp',
-      '/Project/Watercress-Bali/imgi_6_image.webp',
+      
     ],
     liveUrl: 'https://watercressbali.com/',
   },
@@ -42,8 +39,8 @@ export const projects: ProjectData[] = [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
     ],
-    thumbnail: '/Project/The-Common-Bali/imgi_11_image.webp', 
-    heroImage: '/Project/The-Common-Bali/imgi_11_image.webp',
+    thumbnail: '/Project/The-Common-Bali/TCM-1.webp', 
+    heroImage: '/Project/The-Common-Bali/TCM-1.webp',
     gallery: [],
     liveUrl: 'https://www.thecommonbali.com/',
   },
@@ -55,10 +52,14 @@ export const projects: ProjectData[] = [
     description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
     techLogos: [
       '/icon/Wordpress.svg',
+      '/icon/GSAP.svg',
     ],
-    thumbnail: '/Project/Milk-and-Madu/imgi_4_image.webp', 
-    heroImage: '/Project/Milk-and-Madu/imgi_4_image.webp', 
-    gallery: [],
+    thumbnail: '/Project/Milk-and-Madu/MM-1.webp', 
+    heroImage: '/Project/Milk-and-Madu/MM-1.webp', 
+    gallery: [
+      '/Project/Milk-and-Madu/MM-2.webp',
+      '/Project/Milk-and-Madu/MM-3.webp',
+    ],
     liveUrl: 'https://milkandmadu.com/',
   },
 
@@ -69,10 +70,10 @@ export const projects: ProjectData[] = [
     role: 'Web Developer',
     description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
     techLogos: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
+      '/icon/Wordpress.svg',
     ],
-    thumbnail: '/Project/Double-six-group/imgi_7_image.webp', 
-    heroImage: '/Project/Double-six-group/imgi_7_image.webp',
+    thumbnail: '/Project/Double-six-group/DSG-1.webp', 
+    heroImage: '/Project/Double-six-group/DSG-1.webp',
     gallery: [],
     liveUrl: 'https://doublesix.group/',
   },
@@ -86,25 +87,10 @@ export const projects: ProjectData[] = [
     techLogos: [
       '/icon/Wordpress.svg',
     ],
-    thumbnail: '/Project/Cocoon-Beach-Club/imgi_8_image.webp', 
-    heroImage: '/Project/Cocoon-Beach-Club/imgi_8_image.webp',
+    thumbnail: '/Project/Cocoon-Beach-Club/CCN-1.webp', 
+    heroImage: '/Project/Cocoon-Beach-Club/CCN-1.webp',
     gallery: [],
     liveUrl: 'https://cocoon-beach.com/',
-  },
-
-   {
-    id: 'UIUX-E-commerce-Project',
-    name: 'UI/UX E-commerce Project',
-    year: '2026',
-    role: 'UI/UX Designer',
-    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
-    techLogos: [
-      '/icon/figma.svg',
-    ],
-    thumbnail: '/Project/UIUX-E-commerce-Project/imgi_10_image.webp', 
-    heroImage: '/Project/UIUX-E-commerce-Project/imgi_10_image.webp', 
-    gallery: [],
-    liveUrl: '',
   },
 
    {
@@ -117,25 +103,50 @@ export const projects: ProjectData[] = [
       '/icon/laravel.svg',
       '/icon/tailwindcss.svg',
     ],
-    thumbnail: '/Project/Information-System-Kos/imgi_2_image.webp', 
-    heroImage: '/Project/Information-System-Kos/imgi_2_image.webp', 
-    gallery: [],
+    thumbnail: '/Project/Information-System-Kos/SIK-1.webp', 
+    heroImage: '/Project/Information-System-Kos/SIK-1.webp', 
+    gallery: [
+      '/Project/Information-System-Kos/SIK-2.webp',
+      '/Project/Information-System-Kos/SIK-1.webp',
+    ],
+    liveUrl: '',
+  },
+
+  {
+    id: 'UIUX-E-commerce-Project',
+    name: 'UI/UX E-commerce Project',
+    year: '2022',
+    role: 'UI/UX Designer',
+    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
+    techLogos: [
+      '/icon/figma.svg',
+    ],
+    thumbnail: '/Project/UIUX-E-commerce-Project/E-commerce-1.webp', 
+    heroImage: '/Project/UIUX-E-commerce-Project/E-commerce-1.webp', 
+    gallery: [
+      '/Project/UIUX-E-commerce-Project/E-commerce-3.webp',
+      '/Project/UIUX-E-commerce-Project/E-commerce-2.webp',
+      '/Project/UIUX-E-commerce-Project/E-commerce-1.webp',
+      
+    ],
     liveUrl: '',
   },
 
   {
     id: 'Mapandes-Online-Invitation',
     name: 'MAPANDES - ONLINE INVITATION',
-    year: '2026',
+    year: '2021',
     role: 'Web Developer',
     description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
     techLogos: [
       '/icon/css3.svg',
-      '/icon/GSAP.svg',
     ],
-    thumbnail: '/Project/Mapandes-Online-Invitation/imgi_3_image.webp', 
-    heroImage: '/Project/Mapandes-Online-Invitation/imgi_3_image.webp', 
-    gallery: [],
+    thumbnail: '/Project/Mapandes-Online-Invitation/MAPENDES-1.webp', 
+    heroImage: '/Project/Mapandes-Online-Invitation/MAPENDES-1.webp', 
+    gallery: [
+      '/Project/Mapandes-Online-Invitation/MAPENDES-2.webp',
+      '/Project/Mapandes-Online-Invitation/MAPENDES-1.webp',
+    ],
     liveUrl: '',
   }
  
