@@ -52,7 +52,7 @@ const ServicesSection: React.FC = () => {
           className="font-black uppercase text-center text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28 leading-none tracking-tight pb-2"
           style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
         >
-          Services
+          What I Do
         </h2>
       </RevealText>
 

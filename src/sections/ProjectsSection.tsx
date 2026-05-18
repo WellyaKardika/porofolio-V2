@@ -30,35 +30,31 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
         </div>
 
         <div className="flex flex-col px-2">
-          {/* Main Row: Title --- Logos & Button */}
-          <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 sm:gap-6">
-            
+          {/* Top Row: Title & Button */}
+          <div className="flex items-center justify-between gap-4">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-medium uppercase text-[#fff] tracking-tight leading-none">
               {project.name}
             </h3>
-
-            {/* Right: Logos & Button */}
-            <div className="flex items-center gap-4 sm:gap-6">
-              <div className="flex items-center gap-3">
-                {project.techLogos.slice(0, 3).map((logo, i) => (
-                  <img 
-                    key={i} 
-                    src={logo} 
-                    alt="Tech Logo" 
-                    className="h-6 sm:h-7 md:h-8 w-auto object-contain  opacity-60 group-hover:opacity-100 transition-opacity" 
-                  />
-                ))}
-              </div>
-              
-              <Button onClick={handleProjectClick} className="whitespace-nowrap">
-                See Detail
-              </Button>
-            </div>
+            <Button onClick={handleProjectClick} className="whitespace-nowrap shrink-0">
+              See Detail
+            </Button>
           </div>
 
-          {/* Bottom Row: Year (Independent, won't break title alignment) */}
-          <div className="mt-2 sm:mt-3">
-            <p className="text-white/50 text-xs sm:text-sm">{project.year}</p>
+          {/* Middle Row: Tech Logos */}
+          <div className="mt-4 flex items-center gap-3">
+            {project.techLogos.slice(0, 3).map((logo, i) => (
+              <img 
+                key={i} 
+                src={logo} 
+                alt="Tech Logo" 
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity" 
+              />
+            ))}
+          </div>
+
+          {/* Bottom Row: Year */}
+          <div className="mt-2">
+            <p className="text-white/50 text-xs sm:text-sm font-medium">{project.year}</p>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ export const projects: ProjectData[] = [
     name: 'WATERCRESS BALI',
     year: '2026',
     role: 'Web Developer',
-    description: 'Lorem ipsum dolor sit amet consectetur. Sed auctor turpis ac interdum amet quis elit. Nulla viverra amet lorem quam at neque quis dolor quis. Amet rutrum scelerisque duis sapien nibh nibh a varius aliquam. Pretium amet felis auctor a bibendum orci quam amet scelerisque. Amet quisque mattis nulla ipsum dictumst mauris. Malesuada maecenas felis quis risus eget.',
+    description: 'Modern website for a Bali-based restaurant brand, focused on menu visibility and location details.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -34,7 +34,7 @@ export const projects: ProjectData[] = [
     name: 'THE COMMON BALI',
     year: '2026',
     role: 'Web Developer',
-    description: 'A beautiful and modern website designed to showcase The Common Bali. Featuring smooth animations and a fully responsive layout.',
+    description: 'Built a modern, minimalist website tailored to the client\'s brief — clean monochrome branding over immersive full-screen lifestyle imagery.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -49,7 +49,7 @@ export const projects: ProjectData[] = [
     name: 'MILK & MADU',
     year: '2026',
     role: 'Web Developer',
-    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
+    description: 'Warm, inviting digital experience for a popular cafe brand, optimized for mobile visitors.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -68,7 +68,7 @@ export const projects: ProjectData[] = [
     name: 'DOUBLE SIX GROUP',
     year: '2026',
     role: 'Web Developer',
-    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
+    description: 'Multi-property hospitality presence with strong visual identity and clear navigation.',
     techLogos: [
       '/icon/Wordpress.svg',
     ],
@@ -83,7 +83,7 @@ export const projects: ProjectData[] = [
     name: 'COCOON BEACH CLUB BALI',
     year: '2026',
     role: 'Web Developer',
-    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
+    description: 'Migrated the entire site from Oxygen Builder to Elementor, rebuilding all pages while preserving the tropical beach-club aesthetic and improving editor usability.',
     techLogos: [
       '/icon/Wordpress.svg',
     ],
@@ -98,7 +98,7 @@ export const projects: ProjectData[] = [
     name: 'INFORMATION SYSTEM KOS',
     year: '2025',
     role: 'UI/UX Designer',
-    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
+    description: 'Room availability and rental tracking system built with Laravel 12 and Filament.',
     techLogos: [
       '/icon/laravel.svg',
       '/icon/tailwindcss.svg',
@@ -117,7 +117,7 @@ export const projects: ProjectData[] = [
     name: 'UI/UX E-commerce Project',
     year: '2022',
     role: 'UI/UX Designer',
-    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
+    description: 'UI/UX E-commerce Project for Interactive Design Analysis course, focusing on user flow optimization.',
     techLogos: [
       '/icon/figma.svg',
     ],
@@ -137,9 +137,11 @@ export const projects: ProjectData[] = [
     name: 'MAPANDES - ONLINE INVITATION',
     year: '2021',
     role: 'Web Developer',
-    description: 'High-end cinematic company profile website for Double Six Group, featuring brutalist-modern redesign and smooth GSAP animations.',
+    description: 'Interactive digital invitation website. Built with HTML5, CSS3, and JavaScript.',
     techLogos: [
+      '/icon/html5.svg',
       '/icon/css3.svg',
+      '/icon/JS.svg',
     ],
     thumbnail: '/Project/Mapandes-Online-Invitation/MAPENDES-1.webp', 
     heroImage: '/Project/Mapandes-Online-Invitation/MAPENDES-1.webp', 
