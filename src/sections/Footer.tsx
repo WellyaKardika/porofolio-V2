@@ -12,10 +12,10 @@ const socialLinks = [
 const Footer: React.FC = () => {
   return (
     <footer id="contact" className="bg-[#F3F4F6] text-[#0C0C0C] py-20 px-6 sm:px-8 md:px-10 lg:px-20 flex flex-col gap-24 sm:gap-32 md:gap-40 rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] relative z-20">
-      
+      <RevealText delay={0} duration={0.8} margin="0px 0px -50px 0px">
       {/* Top Section - Large Text */}
-      <div className="max-w-4xl">
-        <RevealText delay={0} duration={0.8} margin="0px 0px -50px 0px">
+      <div className="max-w-4xl mb-14">
+        
           <h2 
             className="font-medium tracking-tight leading-[1.1]" 
             style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}
@@ -23,11 +23,11 @@ const Footer: React.FC = () => {
             Bringing your vision to life,<br />
             one line of code at a time.
           </h2>
-        </RevealText>
+        
       </div>
 
       {/* Bottom Section - Logo, Copyright, Socials */}
-      <RevealText delay={0.2} duration={0.8} margin="0px 0px -50px 0px">
+      
         <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 xl:gap-0">
           
           {/* Bottom Left */}
