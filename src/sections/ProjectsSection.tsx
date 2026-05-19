@@ -14,7 +14,7 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
   };
 
   return (
-    <RevealText delay={0.3} className="mb-24 md:mb-[calc(50%)]">
+    <RevealText delay={0.3} className="w-full">
       <div 
         className="group cursor-pointer flex flex-col"
         onClick={handleProjectClick}
@@ -79,19 +79,31 @@ const ProjectsSection: React.FC = () => {
       </RevealText>
 
       {/* 2-Column Grid Layout */}
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16">
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16 gap-y-24 md:gap-y-0">
         {/* Left Column (Even Indexes) */}
-        <div className="flex flex-col">
-          {projects.filter((_, i) => i % 2 === 0).map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index * 2} />
-          ))}
+        <div className="contents md:flex md:flex-col">
+          {projects.filter((_, i) => i % 2 === 0).map((project, index, arr) => {
+            const originalIndex = index * 2;
+            const isLast = index === arr.length - 1;
+            return (
+              <div key={project.id} className={`flex flex-col ${isLast ? '' : 'md:mb-[calc(50%)]'}`} style={{ order: originalIndex }}>
+                <ProjectCard project={project} index={originalIndex} />
+              </div>
+            );
+          })}
         </div>
 
         {/* Right Column (Odd Indexes) */}
-        <div className="flex flex-col md:mt-[calc(60%)] lg:mt-[calc(60%)]">
-          {projects.filter((_, i) => i % 2 !== 0).map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index * 2 + 1} />
-          ))}
+        <div className="contents md:flex md:flex-col md:mt-[calc(60%)] lg:mt-[calc(60%)]">
+          {projects.filter((_, i) => i % 2 !== 0).map((project, index, arr) => {
+            const originalIndex = index * 2 + 1;
+            const isLast = index === arr.length - 1;
+            return (
+              <div key={project.id} className={`flex flex-col ${isLast ? '' : 'md:mb-[calc(50%)]'}`} style={{ order: originalIndex }}>
+                <ProjectCard project={project} index={originalIndex} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
