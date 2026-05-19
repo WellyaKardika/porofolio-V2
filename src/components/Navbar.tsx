@@ -110,7 +110,7 @@ export default function Navbar() {
         {/* My CV Button */}
         <div className="btn-cv-anim absolute bottom-10 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-10 z-10 mix-blend-difference">
           <Button 
-            href="/cv.pdf" 
+            href="/CV/I%20MADE%20WELLYA%20SUPRATISTHA%20KARDIKA-resume.pdf" 
             className="!border-white/20 hover:!border-white text-white"
           >
             My CV

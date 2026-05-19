@@ -17,7 +17,7 @@ export const projects: ProjectData[] = [
     name: 'WATERCRESS BALI',
     year: '2026',
     role: 'Web Developer',
-    description: 'Modern website for a Bali-based restaurant brand, focused on menu visibility and location details.',
+    description: 'Watercress Bali required more than a standard WordPress setup. By implementing a SPA concept with custom code and GSAP-powered animations, the result is a browsing experience that feels effortless — no reloads, no interruptions, just smooth transitions that let the content speak for itself.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -34,7 +34,7 @@ export const projects: ProjectData[] = [
     name: 'THE COMMON BALI',
     year: '2026',
     role: 'Web Developer',
-    description: 'Built a modern, minimalist website tailored to the client\'s brief — clean monochrome branding over immersive full-screen lifestyle imagery.',
+    description: 'The Common Bali started as a clone — same codebase, same SPA concept, same GSAP transitions. But where Watercress is warm, The Common is sharp. Every color stripped away, leaving only black and white — a deliberate design choice that makes the brand impossible to ignore.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -49,7 +49,7 @@ export const projects: ProjectData[] = [
     name: 'MILK & MADU',
     year: '2026',
     role: 'Web Developer',
-    description: 'Warm, inviting digital experience for a popular cafe brand, optimized for mobile visitors.',
+    description: 'Milk & Madu is one of the outlets under Double Six Group. I handled the Location and What\'s On pages — built on WordPress with custom code and GSAP animations.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -68,7 +68,7 @@ export const projects: ProjectData[] = [
     name: 'DOUBLE SIX GROUP',
     year: '2026',
     role: 'Web Developer',
-    description: 'Multi-property hospitality presence with strong visual identity and clear navigation.',
+    description: 'The main website for Double Six Group — the hospitality company I work for. Built on WordPress, this site serves as the digital face of the entire group, bringing together all their outlets under one clean and cohesive online presence.',
     techLogos: [
       '/icon/Wordpress.svg',
     ],
@@ -97,11 +97,12 @@ export const projects: ProjectData[] = [
     id: 'Information-System-Kos',
     name: 'INFORMATION SYSTEM KOS',
     year: '2025',
-    role: 'UI/UX Designer',
-    description: 'Room availability and rental tracking system built with Laravel 12 and Filament.',
+    role: 'Fullstack Developer',
+    description: 'A boarding house management system built with Laravel and Filament, styled with Tailwind CSS. Comes with a full CRUD system and admin dashboard to manage rooms and tenants — plus a clean user-facing view where anyone can check room availability in real time.',
     techLogos: [
       '/icon/laravel.svg',
       '/icon/tailwindcss.svg',
+      '/icon/filament.svg',
     ],
     thumbnail: '/Project/Information-System-Kos/SIK-1.webp', 
     heroImage: '/Project/Information-System-Kos/SIK-1.webp', 

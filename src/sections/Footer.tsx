@@ -6,7 +6,7 @@ const socialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/wellyakardika/' },
   { label: 'Instagram', href: 'https://www.instagram.com/wellyakardikaa/' },
   { label: 'Email', href: 'mailto:@kardikawellya@gmail.com' },
-  { label: 'My CV', href: '/cv.pdf' },
+  { label: 'My CV', href: '/CV/I%20MADE%20WELLYA%20SUPRATISTHA%20KARDIKA-resume.pdf' },
 ];
 
 const Footer: React.FC = () => {
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 xl:gap-0">
           
           {/* Bottom Left */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+          <div className="order-2 xl:order-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
             <img 
               src="/logo-black.webp" 
               alt="Wellya Logo" 
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Bottom Right (Social Links) */}
-          <div className="flex flex-col items-start xl:items-end gap-4">
+          <div className="order-1 xl:order-2 flex flex-col items-start xl:items-end gap-4">
             <p className="text-[#646973] font-medium text-sm sm:text-base uppercase tracking-wider">
               Get in touch
             </p>

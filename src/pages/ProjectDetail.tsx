@@ -82,7 +82,7 @@ const ProjectDetail: React.FC = () => {
               </div>
 
               {/* Details Section */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20 md:mb-32">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-25 md:mb-32">
                 <div className="md:col-span-7">
                   <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
                     {project.description}
