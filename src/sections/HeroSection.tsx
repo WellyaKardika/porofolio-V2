@@ -43,7 +43,7 @@ const HeroSection: React.FC = () => {
         {/* Right: Contact button */}
         <RevealText delay={0.5} duration={0.8}>
             <img 
-              src="logo-about.png" 
+              src="logo-about.webp" 
               alt="Contact" 
               className="w-[100px] sm:w-[120px] md:w-[140px] select-none"
               draggable={false}

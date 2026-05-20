@@ -67,7 +67,7 @@ export default function Navbar() {
     <>
       <nav className="navbar">
         <a href="/" onClick={handleLogoClick} className="navbar__logo">
-          <img src="/logo white.png" alt="Wellya Logo" className="h-6 sm:h-8 object-contain" draggable={false} />
+          <img src="/logo-white.webp" alt="Wellya Logo" className="h-6 sm:h-8 object-contain" draggable={false} />
         </a>
 
         <div className="flex items-center gap-4 sm:gap-6">
