@@ -89,7 +89,7 @@ const ProjectDetail: React.FC = () => {
                   </p>
                 </div>
                 
-                <div className="md:col-span-5 grid grid-cols-3 gap-6">
+                <div className="md:col-span-5 grid grid-cols-3 gap-6 mb-12">
                   <div>
                     <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Year</h3>
                     <p className="text-white/70">{project.year}</p>
