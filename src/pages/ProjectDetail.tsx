@@ -67,6 +67,8 @@ const ProjectDetail: React.FC = () => {
                 <img
                   src={project.heroImage}
                   alt={project.name}
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-auto max-h-[70vh] object-contain md:object-cover rounded-3xl"
                 />
                 <div className="mt-8">
@@ -124,7 +126,9 @@ const ProjectDetail: React.FC = () => {
                     >
                       <img 
                         src={img} 
-                        alt={`${project.name} detail ${i + 1}`} 
+                        alt={`${project.name} detail ${i + 1}`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover min-h-[300px]"
                       />
                     </div>

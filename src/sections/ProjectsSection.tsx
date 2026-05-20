@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useTransition } from '../components/TransitionContext';
 import RevealText from '../components/RevealText';
 import { projects, ProjectData } from '../data/projects';
@@ -23,6 +22,8 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
           <img
             src={project.thumbnail}
             alt={project.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           {/* Hover Overlay */}
@@ -46,7 +47,9 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
               <img 
                 key={i} 
                 src={logo} 
-                alt="Tech Logo" 
+                alt="Tech Logo"
+                loading="lazy"
+                decoding="async"
                 className="h-5 sm:h-6 md:h-7 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity" 
               />
             ))}
