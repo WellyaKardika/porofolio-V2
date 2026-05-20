@@ -66,7 +66,7 @@ export const TransitionProvider: React.FC<{ children: ReactNode }> = ({ children
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
           >
-            <img src="/logo-black.webp" alt="Wk Logo" className="w-24 md:w-32 h-auto" />
+            <img src="/logo-black-load.webp" alt="Wk Logo" className="w-24 md:w-32 h-auto" />
           </motion.div>
         )}
       </AnimatePresence>
