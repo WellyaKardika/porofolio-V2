@@ -50,7 +50,7 @@ const ServicesSection: React.FC = () => {
       <RevealText delay={0} duration={0.8} margin="0px 0px -100px 0px">
         <h2
           className="font-black uppercase text-center text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28 leading-none tracking-tight pb-2"
-          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+          style={{ fontSize: 'clamp(3rem, 12vw, 130px)' }}
         >
           What I Do
         </h2>

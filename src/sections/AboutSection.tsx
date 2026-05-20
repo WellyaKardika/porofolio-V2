@@ -1,6 +1,5 @@
 import React from 'react';
 import AnimatedText from '../components/AnimatedText';
-import FadeIn from '../components/FadeIn';
 import Button from '../components/Button';
 import RevealText from '../components/RevealText';
 

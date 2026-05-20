@@ -72,7 +72,7 @@ const ProjectsSection: React.FC = () => {
       <RevealText delay={0} duration={0.8} margin="0px 0px -50px 0px">
         <h2
           className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-24 md:mb-32"
-          style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
+          style={{ fontSize: 'clamp(3rem, 12vw, 130px)' }}
         >
           Project
         </h2>
