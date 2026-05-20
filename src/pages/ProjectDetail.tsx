@@ -54,7 +54,6 @@ const ProjectDetail: React.FC = () => {
     return () => clearTimeout(timer);
   }, [id]);
 
-  // Close lightbox on ESC / Arrow keys
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (lightboxIndex === null) return;
@@ -168,10 +167,10 @@ const ProjectDetail: React.FC = () => {
                 </div>
               </div>
 
-              {/* Image Gallery Grid */}
+              {/* Image Gallery — masonry columns agar tinggi tiap gambar natural */}
               {project.gallery.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-24 md:mb-32">
-                  {/* Shared cursor for gallery */}
+                <div className="columns-1 md:columns-2 gap-4 md:gap-6 mb-24 md:mb-32">
+                  {/* Shared cursor */}
                   <div
                     className="fixed pointer-events-none z-[9990] flex items-center justify-center rounded-full bg-white text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs"
                     style={{
@@ -188,36 +187,34 @@ const ProjectDetail: React.FC = () => {
                   </div>
 
                   {project.gallery.map((img, i) => (
+                    // break-inside-avoid: cegah gambar terpotong antar kolom
                     <div
                       key={i}
-                      className={`rounded-3xl overflow-hidden ${
-                        i === 0 ? 'md:col-span-1 md:row-span-1' : ''
-                      } ${
-                        i === 1 ? 'md:col-span-1 md:row-span-1' : ''
-                      }`}
+                      className="break-inside-avoid mb-4 md:mb-6 rounded-3xl overflow-hidden"
                     >
                       <div
                         ref={el => { galleryRefs.current[i] = el; }}
-                        className="relative cursor-pointer"
+                        className="relative cursor-pointer group/img"
                         onClick={() => setLightboxIndex(i)}
                         onMouseMove={handleGalleryMouseMove}
                         onMouseLeave={handleGalleryMouseLeave}
                       >
+                        {/* h-auto: tinggi mengikuti aspect ratio asli gambar */}
                         <img
                           src={img}
                           alt={`${project.name} detail ${i + 1}`}
                           loading="lazy"
                           decoding="async"
-                          className="w-full h-full object-cover min-h-[300px] transition-transform duration-500 hover:scale-105"
+                          className="w-full h-auto block transition-transform duration-500 group-hover/img:scale-105"
                         />
-                        <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300" />
+                        <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-all duration-300" />
                       </div>
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* Lightbox Modal — AnimatePresence enables fade-out on close */}
+              {/* Lightbox Modal */}
               <AnimatePresence>
                 {lightboxIndex !== null && (
                   <motion.div

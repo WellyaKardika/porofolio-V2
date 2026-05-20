@@ -102,8 +102,8 @@ export const projects: ProjectData[] = [
     techLogos: [
       '/icon/nextjs.svg',
       '/icon/react.svg',
-      '/icon/typescript.svg',
       '/icon/GSAP.svg',
+      '/icon/typescript.svg',
     ],
     thumbnail: '/Project/Portfolio-v1/porto-1.webp', 
     heroImage: '/Project/Portfolio-v1/porto-1.webp',
