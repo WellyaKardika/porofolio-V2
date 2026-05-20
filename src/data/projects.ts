@@ -93,6 +93,27 @@ export const projects: ProjectData[] = [
     liveUrl: 'https://cocoon-beach.com/',
   },
 
+  {
+    id: 'portfolio-V1',
+    name: 'Wellya Kardika Portfolio V1',
+    year: '2026',
+    role: 'Web Developer',
+    description: 'The first version of my portfolio website, built with Next.js 16 and TypeScript. Features a cinematic multilingual intro animation, GSAP-powered transitions, 3D graphics with React Three Fiber, and a collection of premium interactive UI components.',
+    techLogos: [
+      '/icon/nextjs.svg',
+      '/icon/react.svg',
+      '/icon/typescript.svg',
+      '/icon/GSAP.svg',
+    ],
+    thumbnail: '/Project/Portfolio-v1/porto-1.webp', 
+    heroImage: '/Project/Portfolio-v1/porto-1.webp',
+    gallery: [
+      '/Project/Portfolio-v1/porto-1.webp',
+      '/Project/Portfolio-v1/porto-2.webp',
+    ],
+    liveUrl: 'https://github.com/WellyaKardika/project-portofolio',
+  },
+
    {
     id: 'Information-System-Kos',
     name: 'INFORMATION SYSTEM KOS',
@@ -110,7 +131,7 @@ export const projects: ProjectData[] = [
       '/Project/Information-System-Kos/SIK-2.webp',
       '/Project/Information-System-Kos/SIK-1.webp',
     ],
-    liveUrl: '',
+    liveUrl: 'https://github.com/WellyaKardika/Kos-kardika',
   },
 
   {
@@ -130,7 +151,7 @@ export const projects: ProjectData[] = [
       '/Project/UIUX-E-commerce-Project/E-commerce-1.webp',
       
     ],
-    liveUrl: '',
+    liveUrl: 'https://www.figma.com/proto/He9uUkHl0NVW2O0iOsBP7K/Electro?page-id=0%3A1&node-id=1-2&p=f&viewport=558%2C498%2C0.09&t=Qbytm9HN9opRXtce-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A2',
   },
 
   {
@@ -150,7 +171,7 @@ export const projects: ProjectData[] = [
       '/Project/Mapandes-Online-Invitation/MAPENDES-2.webp',
       '/Project/Mapandes-Online-Invitation/MAPENDES-1.webp',
     ],
-    liveUrl: '',
+    liveUrl: 'https://github.com/WellyaKardika/Undangan-online',
   }
  
 ];
