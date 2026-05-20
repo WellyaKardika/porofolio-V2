@@ -33,7 +33,10 @@ const AboutSection: React.FC = () => {
           </RevealText>
 
           <RevealText delay={0.3} duration={0.8}>
-            <Button href="#contact">Contact Me</Button>
+            <Button onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}>Contact Me</Button>
           </RevealText>
         </div>
       </div>

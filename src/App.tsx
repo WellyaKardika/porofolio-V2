@@ -8,7 +8,16 @@ const App: React.FC = () => {
 
   // Scroll to top or section on route change
   useEffect(() => {
-    if (location.pathname === '/project') {
+    if (location.pathname === '/') {
+      const scrollTarget = sessionStorage.getItem('scrollTo');
+      if (scrollTarget) {
+        sessionStorage.removeItem('scrollTo');
+        setTimeout(() => {
+          const element = document.getElementById(scrollTarget);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else if (location.pathname === '/project') {
       setTimeout(() => {
         const element = document.getElementById('projects');
         if (element) {
@@ -16,7 +25,6 @@ const App: React.FC = () => {
         }
       }, 100);
     } else if (location.hash) {
-      // Need a slight delay to ensure the page has rendered the target element
       setTimeout(() => {
         const id = location.hash.replace('#', '');
         const element = document.getElementById(id);

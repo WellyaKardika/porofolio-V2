@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useTransition } from '../components/TransitionContext';
 import RevealText from '../components/RevealText';
 import { projects, ProjectData } from '../data/projects';
@@ -6,19 +6,81 @@ import Button from '../components/Button';
 
 const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ project, index }) => {
   const { navigateWithTransition } = useTransition();
+  const [cursorVisible, setCursorVisible] = useState(false);
+  const [displayPos, setDisplayPos] = useState({ x: 0, y: 0 });
+  const [isDesktop, setIsDesktop] = useState(false);
+  const targetRef = useRef({ x: 0, y: 0 });
+  const posRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef<number>(0);
+
+  // Detect desktop (mouse device + min-width 1024px)
+  useEffect(() => {
+    const mq = window.matchMedia('(pointer: fine) and (min-width: 1024px)');
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // Only run RAF loop on desktop
+  useEffect(() => {
+    if (!isDesktop) return;
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+    const animate = () => {
+      posRef.current.x = lerp(posRef.current.x, targetRef.current.x, 0.1);
+      posRef.current.y = lerp(posRef.current.y, targetRef.current.y, 0.1);
+      setDisplayPos({ x: posRef.current.x, y: posRef.current.y });
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [isDesktop]);
 
   const handleProjectClick = (e: React.MouseEvent) => {
     e.preventDefault();
     navigateWithTransition(`/project/${project.id}`);
   };
 
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDesktop) return;
+    targetRef.current = { x: e.clientX, y: e.clientY };
+    setCursorVisible(true);
+  }, [isDesktop]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (!isDesktop) return;
+    setCursorVisible(false);
+  }, [isDesktop]);
+
   return (
     <RevealText delay={0.3} className="w-full">
-      <div 
+      {/* Custom cursor — only rendered on desktop (pointer:fine + ≥1024px) */}
+      {isDesktop && (
+        <div
+          className="fixed pointer-events-none z-[9990] flex items-center justify-center rounded-full bg-white text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs"
+          style={{
+            width: 90,
+            height: 90,
+            left: displayPos.x,
+            top: displayPos.y,
+            transform: `translate(-50%, -50%) scale(${cursorVisible ? 1 : 0})`,
+            opacity: cursorVisible ? 1 : 0,
+            transition: 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          }}
+        >
+          View
+        </div>
+      )}
+
+      <div
         className="group cursor-pointer flex flex-col"
         onClick={handleProjectClick}
       >
-        <div className="relative overflow-hidden mb-6 md:mb-8 bg-zinc-900 aspect-[16/9]">
+        <div
+          className="relative overflow-hidden mb-6 md:mb-8 bg-zinc-900 aspect-[16/9]"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <img
             src={project.thumbnail}
             alt={project.name}
@@ -36,22 +98,18 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
             <h3 className="text-xl sm:text-2xl md:text-3xl font-medium uppercase text-[#fff] tracking-tight leading-none">
               {project.name}
             </h3>
-            {/* Button: hidden on mobile/iPad, visible on desktop */}
-            <Button onClick={handleProjectClick} className="whitespace-nowrap shrink-0 hidden lg:inline-flex">
-              See Detail
-            </Button>
           </div>
 
           {/* Middle Row: Tech Logos */}
           <div className="mt-4 flex items-center gap-3">
             {project.techLogos.slice(0, 3).map((logo, i) => (
-              <img 
-                key={i} 
-                src={logo} 
+              <img
+                key={i}
+                src={logo}
                 alt="Tech Logo"
                 loading="lazy"
                 decoding="async"
-                className="h-5 sm:h-6 md:h-7 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity" 
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity"
               />
             ))}
           </div>
@@ -61,7 +119,7 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
             <p className="text-white/50 text-xs sm:text-sm font-medium">{project.year}</p>
           </div>
 
-          {/* Button: visible on mobile/iPad only, below year */}
+          {/* Button: visible on mobile & tablet only, hidden on desktop */}
           <div className="mt-4 lg:hidden">
             <Button onClick={handleProjectClick}>
               See Detail
