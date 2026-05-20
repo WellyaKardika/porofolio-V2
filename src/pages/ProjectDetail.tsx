@@ -191,7 +191,7 @@ const ProjectDetail: React.FC = () => {
                     <div
                       key={i}
                       className={`rounded-3xl overflow-hidden ${
-                        i === 0 ? 'md:col-span-1 md:row-span-2' : ''
+                        i === 0 ? 'md:col-span-1 md:row-span-1' : ''
                       } ${
                         i === 1 ? 'md:col-span-1 md:row-span-1' : ''
                       }`}
