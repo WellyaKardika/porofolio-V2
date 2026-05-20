@@ -15,12 +15,24 @@ const ProjectDetail: React.FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [galleryCursorVisible, setGalleryCursorVisible] = useState(false);
   const [galleryDisplayPos, setGalleryDisplayPos] = useState({ x: 0, y: 0 });
+  const [isDesktop, setIsDesktop] = useState(false);
   const galleryTargetRef = useRef({ x: 0, y: 0 });
   const galleryPosRef = useRef({ x: 0, y: 0 });
   const galleryRafRef = useRef<number>(0);
   const galleryRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Detect desktop (mouse device + min-width 1024px)
   useEffect(() => {
+    const mq = window.matchMedia('(pointer: fine) and (min-width: 1024px)');
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // Only run RAF loop on desktop
+  useEffect(() => {
+    if (!isDesktop) return;
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const animate = () => {
       galleryPosRef.current.x = lerp(galleryPosRef.current.x, galleryTargetRef.current.x, 0.1);
@@ -30,16 +42,18 @@ const ProjectDetail: React.FC = () => {
     };
     galleryRafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(galleryRafRef.current);
-  }, []);
+  }, [isDesktop]);
 
   const handleGalleryMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDesktop) return;
     galleryTargetRef.current = { x: e.clientX, y: e.clientY };
     setGalleryCursorVisible(true);
-  }, []);
+  }, [isDesktop]);
 
   const handleGalleryMouseLeave = useCallback(() => {
+    if (!isDesktop) return;
     setGalleryCursorVisible(false);
-  }, []);
+  }, [isDesktop]);
 
   const getLogoName = (path: string) => {
     const filename = path.split('/').pop() ?? '';
@@ -167,27 +181,28 @@ const ProjectDetail: React.FC = () => {
                 </div>
               </div>
 
-              {/* Image Gallery — masonry columns agar tinggi tiap gambar natural */}
+              {/* Image Gallery — masonry columns */}
               {project.gallery.length > 0 && (
                 <div className="columns-1 md:columns-2 gap-4 md:gap-6 mb-24 md:mb-32">
-                  {/* Shared cursor */}
-                  <div
-                    className="fixed pointer-events-none z-[9990] flex items-center justify-center rounded-full bg-white text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs"
-                    style={{
-                      width: 90,
-                      height: 90,
-                      left: galleryDisplayPos.x,
-                      top: galleryDisplayPos.y,
-                      transform: `translate(-50%, -50%) scale(${galleryCursorVisible ? 1 : 0})`,
-                      opacity: galleryCursorVisible ? 1 : 0,
-                      transition: 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                    }}
-                  >
-                    View
-                  </div>
+                  {/* Custom cursor — hanya render di desktop */}
+                  {isDesktop && (
+                    <div
+                      className="fixed pointer-events-none z-[9990] flex items-center justify-center rounded-full bg-white text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs"
+                      style={{
+                        width: 90,
+                        height: 90,
+                        left: galleryDisplayPos.x,
+                        top: galleryDisplayPos.y,
+                        transform: `translate(-50%, -50%) scale(${galleryCursorVisible ? 1 : 0})`,
+                        opacity: galleryCursorVisible ? 1 : 0,
+                        transition: 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      }}
+                    >
+                      View
+                    </div>
+                  )}
 
                   {project.gallery.map((img, i) => (
-                    // break-inside-avoid: cegah gambar terpotong antar kolom
                     <div
                       key={i}
                       className="break-inside-avoid mb-4 md:mb-6 rounded-3xl overflow-hidden"
@@ -199,7 +214,6 @@ const ProjectDetail: React.FC = () => {
                         onMouseMove={handleGalleryMouseMove}
                         onMouseLeave={handleGalleryMouseLeave}
                       >
-                        {/* h-auto: tinggi mengikuti aspect ratio asli gambar */}
                         <img
                           src={img}
                           alt={`${project.name} detail ${i + 1}`}
