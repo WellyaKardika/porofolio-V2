@@ -31,12 +31,13 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
         </div>
 
         <div className="flex flex-col px-2">
-          {/* Top Row: Title & Button */}
+          {/* Title Row */}
           <div className="flex items-center justify-between gap-4">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-medium uppercase text-[#fff] tracking-tight leading-none">
               {project.name}
             </h3>
-            <Button onClick={handleProjectClick} className="whitespace-nowrap shrink-0">
+            {/* Button: hidden on mobile/iPad, visible on desktop */}
+            <Button onClick={handleProjectClick} className="whitespace-nowrap shrink-0 hidden lg:inline-flex">
               See Detail
             </Button>
           </div>
@@ -58,6 +59,13 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
           {/* Bottom Row: Year */}
           <div className="mt-2">
             <p className="text-white/50 text-xs sm:text-sm font-medium">{project.year}</p>
+          </div>
+
+          {/* Button: visible on mobile/iPad only, below year */}
+          <div className="mt-4 lg:hidden">
+            <Button onClick={handleProjectClick}>
+              See Detail
+            </Button>
           </div>
         </div>
       </div>
