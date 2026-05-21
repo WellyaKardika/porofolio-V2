@@ -36,7 +36,7 @@ const HeroSection: React.FC = () => {
             className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[300px]"
             style={{ fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)' }}
           >
-            wordpress by craft, frontend by passion <br /> one clean site at a time
+            wordpress by craft<br />frontend by passion<br />one clean site at a time
           </p>
         </RevealText>
 
