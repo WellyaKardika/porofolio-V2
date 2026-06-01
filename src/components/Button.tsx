@@ -5,9 +5,11 @@ interface ButtonProps {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   href?: string;
+  target?: string;
+  download?: boolean | string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, className = '', onClick, href }) => {
+const Button: React.FC<ButtonProps> = ({ children, className = '', onClick, href, target, download }) => {
   const baseClasses = `relative overflow-hidden rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-medium uppercase tracking-widest inline-block text-center
     px-8 py-3 sm:px-10 sm:py-3.5
     text-sm sm:text-base
@@ -17,11 +19,15 @@ const Button: React.FC<ButtonProps> = ({ children, className = '', onClick, href
 
   if (href) {
     const isExternal = href.startsWith('http') || href.startsWith('mailto');
+    const finalTarget = target || (isExternal ? "_blank" : undefined);
+    
     return (
       <a 
         href={href} 
         className={baseClasses} 
-        {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+        {...(finalTarget ? { target: finalTarget } : {})}
+        {...(isExternal || finalTarget === "_blank" ? { rel: "noreferrer" } : {})}
+        {...(download ? { download } : {})}
       >
         <span className="relative z-10">{children}</span>
       </a>

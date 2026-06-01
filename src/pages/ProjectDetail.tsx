@@ -135,7 +135,11 @@ const ProjectDetail: React.FC = () => {
                   </h1>
                   <div className="mt-6">
                     <Button href={project.liveUrl}>
-                      Live Project
+                      {project.liveUrl.includes('github.com') 
+                        ? 'See Repository' 
+                        : project.liveUrl.includes('figma.com')
+                        ? 'View Design'
+                        : 'Live Project'}
                     </Button>
                   </div>
                 </div>

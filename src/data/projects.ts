@@ -16,7 +16,7 @@ export const projects: ProjectData[] = [
     id: 'watercress-bali',
     name: 'WATERCRESS BALI',
     year: '2026',
-    role: 'Web Developer',
+    role: 'Creative Developer',
     description: 'Watercress Bali required more than a standard WordPress setup. By implementing a SPA concept with custom code and GSAP-powered animations, the result is a browsing experience that feels effortless — no reloads, no interruptions, just smooth transitions that let the content speak for itself.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -33,7 +33,7 @@ export const projects: ProjectData[] = [
     id: 'the-common-bali',
     name: 'THE COMMON BALI',
     year: '2026',
-    role: 'Web Developer',
+    role: 'Creative Developer',
     description: 'The Common Bali started as a clone — same codebase, same SPA concept, same GSAP transitions. But where Watercress is warm, The Common is sharp. Every color stripped away, leaving only black and white — a deliberate design choice that makes the brand impossible to ignore.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -48,7 +48,7 @@ export const projects: ProjectData[] = [
     id: 'milk-and-madu',
     name: 'MILK & MADU',
     year: '2026',
-    role: 'Web Developer',
+    role: 'Creative Developer',
     description: 'Milk & Madu is one of the outlets under Double Six Group. I handled the Location and What\'s On pages — built on WordPress with custom code and GSAP animations.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -67,7 +67,7 @@ export const projects: ProjectData[] = [
     id: 'double-six-group',
     name: 'DOUBLE SIX GROUP',
     year: '2026',
-    role: 'Web Developer',
+    role: 'Frontend Developer',
     description: 'The main website for Double Six Group — the hospitality company I work for. Built on WordPress, this site serves as the digital face of the entire group, bringing together all their outlets under one clean and cohesive online presence.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -82,7 +82,7 @@ export const projects: ProjectData[] = [
     id: 'cocoon-beach-club-bali',
     name: 'COCOON BEACH CLUB BALI',
     year: '2026',
-    role: 'Web Developer',
+    role: 'Frontend Developer',
     description: 'Migrated the entire site from Oxygen Builder to Elementor, rebuilding all pages while preserving the tropical beach-club aesthetic and improving editor usability.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -97,13 +97,12 @@ export const projects: ProjectData[] = [
     id: 'portfolio-V1',
     name: 'Wellya Kardika Portfolio V1',
     year: '2026',
-    role: 'Web Developer',
+    role: 'Creative Developer',
     description: 'The first version of my portfolio website, built with Next.js 16 and TypeScript. Features a cinematic multilingual intro animation, GSAP-powered transitions, 3D graphics with React Three Fiber, and a collection of premium interactive UI components.',
     techLogos: [
       '/icon/nextjs.svg',
       '/icon/react.svg',
       '/icon/GSAP.svg',
-      '/icon/typescript.svg',
     ],
     thumbnail: '/Project/Portfolio-v1/porto-1.webp', 
     heroImage: '/Project/Portfolio-v1/porto-1.webp',
@@ -142,6 +141,8 @@ export const projects: ProjectData[] = [
     description: 'UI/UX E-commerce Project for Interactive Design Analysis course, focusing on user flow optimization.',
     techLogos: [
       '/icon/figma.svg',
+      '/icon/ai.svg',
+      '/icon/ps.svg',
     ],
     thumbnail: '/Project/UIUX-E-commerce-Project/E-commerce-1.webp', 
     heroImage: '/Project/UIUX-E-commerce-Project/E-commerce-1.webp', 
@@ -158,7 +159,7 @@ export const projects: ProjectData[] = [
     id: 'Mapandes-Online-Invitation',
     name: 'MAPANDES - ONLINE INVITATION',
     year: '2021',
-    role: 'Web Developer',
+    role: 'Frontend Developer',
     description: 'Interactive digital invitation website. Built with HTML5, CSS3, and JavaScript.',
     techLogos: [
       '/icon/html5.svg',
