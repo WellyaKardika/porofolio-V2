@@ -17,7 +17,7 @@ export const projects: ProjectData[] = [
     name: 'WATERCRESS BALI',
     year: '2026',
     role: 'Creative Developer',
-    description: 'Watercress Bali required more than a standard WordPress setup. By implementing a SPA concept with custom code and GSAP-powered animations, the result is a browsing experience that feels effortless — no reloads, no interruptions, just smooth transitions that let the content speak for itself.',
+    description: 'WordPress, but not as you know it. I built Watercress Bali as a Single Page Application with custom code and GSAP. Pages don\'t reload. Animations don\'t interrupt. The site just moves, the way a good restaurant experience should.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -34,7 +34,7 @@ export const projects: ProjectData[] = [
     name: 'THE COMMON BALI',
     year: '2026',
     role: 'Creative Developer',
-    description: 'The Common Bali started as a clone — same codebase, same SPA concept, same GSAP transitions. But where Watercress is warm, The Common is sharp. Every color stripped away, leaving only black and white — a deliberate design choice that makes the brand impossible to ignore.',
+    description: 'The Common runs on the same WordPress SPA foundation as Watercress. I took the codebase, removed every color, and rebuilt it around a strict black and white system. The brand is minimal. The site is too.',
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/GSAP.svg',
@@ -98,7 +98,7 @@ export const projects: ProjectData[] = [
     name: 'Wellya Kardika Portfolio V1',
     year: '2026',
     role: 'Creative Developer',
-    description: 'The first version of my portfolio website, built with Next.js 16 and TypeScript. Features a cinematic multilingual intro animation, GSAP-powered transitions, 3D graphics with React Three Fiber, and a collection of premium interactive UI components.',
+    description: 'My first portfolio, built with Next.js 16. GSAP handles the animations, React Three Fiber handles the 3D. Multilingual intro sequence, scroll-stacking cards, pixel transitions.I built it to learn. It worked.',
     techLogos: [
       '/icon/nextjs.svg',
       '/icon/react.svg',
