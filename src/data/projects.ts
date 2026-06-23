@@ -16,7 +16,7 @@ export const projects: ProjectData[] = [
     id: 'watercress-bali',
     name: 'WATERCRESS BALI',
     year: '2026',
-    role: 'Creative Developer',
+    role: 'Developer',
     description: 'WordPress, but not as you know it. I built Watercress Bali as a Single Page Application with custom code and GSAP. Pages don\'t reload. Animations don\'t interrupt. The site just moves, the way a good restaurant experience should.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -33,7 +33,7 @@ export const projects: ProjectData[] = [
     id: 'the-common-bali',
     name: 'THE COMMON BALI',
     year: '2026',
-    role: 'Creative Developer',
+    role: 'Developer',
     description: 'The Common runs on the same WordPress SPA foundation as Watercress. I took the codebase, removed every color, and rebuilt it around a strict black and white system. The brand is minimal. The site is too.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -48,7 +48,7 @@ export const projects: ProjectData[] = [
     id: 'milk-and-madu',
     name: 'MILK & MADU',
     year: '2026',
-    role: 'Creative Developer',
+    role: 'Support Developer',
     description: 'Milk & Madu is one of the outlets under Double Six Group. I handled the Location and What\'s On pages — built on WordPress with custom code and GSAP animations.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -67,7 +67,7 @@ export const projects: ProjectData[] = [
     id: 'double-six-group',
     name: 'DOUBLE SIX GROUP',
     year: '2026',
-    role: 'Frontend Developer',
+    role: 'Developer',
     description: 'The main website for Double Six Group — the hospitality company I work for. Built on WordPress, this site serves as the digital face of the entire group, bringing together all their outlets under one clean and cohesive online presence.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -82,7 +82,7 @@ export const projects: ProjectData[] = [
     id: 'cocoon-beach-club-bali',
     name: 'COCOON BEACH CLUB BALI',
     year: '2026',
-    role: 'Frontend Developer',
+    role: 'Developer',
     description: 'Migrated the entire site from Oxygen Builder to Elementor, rebuilding all pages while preserving the tropical beach-club aesthetic and improving editor usability.',
     techLogos: [
       '/icon/Wordpress.svg',
@@ -97,7 +97,7 @@ export const projects: ProjectData[] = [
     id: 'portfolio-V1',
     name: 'Wellya Kardika Portfolio V1',
     year: '2026',
-    role: 'Creative Developer',
+    role: 'Developer',
     description: 'My first portfolio, built with Next.js 16. GSAP handles the animations, React Three Fiber handles the 3D. Multilingual intro sequence, scroll-stacking cards, pixel transitions.I built it to learn. It worked.',
     techLogos: [
       '/icon/nextjs.svg',
