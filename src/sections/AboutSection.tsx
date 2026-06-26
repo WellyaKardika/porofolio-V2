@@ -26,7 +26,7 @@ const AboutSection: React.FC = () => {
         <div className="flex flex-col items-center gap-16 sm:gap-20 md:gap-24">
           <RevealText delay={0.25} duration={0.8}>
             <AnimatedText
-              text={`I'm Wellya Kardika, **Web Developer** with experience building and maintaining responsive websites across real industries. **Skilled in WordPress, PHP, Laravel, and React** — with a strong eye for clean CSS and frontend detail. I've successfully deployed 3+ production websites, maintained 5+ outlet sites, and worked across teams to deliver solutions that actually work. \n\n Passionate about turning designs into functional, user-friendly experiences. Committed to writing clean, maintainable code that solves real problems.`}
+              text={`I'm I Made Wellya Supratistha Kardika, **Web Developer** with experience building and maintaining responsive websites across real industries. **Skilled in WordPress, PHP, Laravel, and React** — with a strong eye for clean CSS and frontend detail. I've successfully deployed 3+ production websites, maintained 5+ outlet sites, and worked across teams to deliver solutions that actually work. \n\n Passionate about turning designs into functional, user-friendly experiences. Committed to writing clean, maintainable code that solves real problems.`}
               className="text-white font-normal text-center leading-relaxed max-w-[700px]"
               style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' } as React.CSSProperties}
             />
