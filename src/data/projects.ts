@@ -13,6 +13,26 @@ export interface ProjectData {
 
 export const projects: ProjectData[] = [
   {
+    id: 'engine-room-bali',
+    name: 'ENGINE ROOM BALI',
+    year: '2026',
+    role: 'Developer',
+    description: 'Developed a premium website for Engine Room Bali, pushing the boundaries of modern web design without relying on heavy plugins. The highlight of this project is a custom-built 3D Dome Gallery engineered entirely with Custom JavaScript and CSS3 3D Transforms. I wrote complex JavaScript logic to handle the mathematical calculations for the spherical layout, touch inertia, and a seamless viewport-based fullscreen lightbox. Combined with ACF for smart dynamic rendering and the Lenis library for buttery smooth scrolling, the result is a highly performant, and user experience.',
+    techLogos: [
+      '/icon/Wordpress.svg',
+      '/icon/acf.svg',
+      '/icon/figma.svg',
+    ],
+    thumbnail: '/Project/Engine-Room/ER-1.webp',
+    heroImage: '/Project/Engine-Room/ER-1.webp',
+    gallery: [
+      '/Project/Engine-Room/ER-1.webp',
+      '/Project/Engine-Room/ER-2.webp',
+      '/Project/Engine-Room/ER-3.webp',
+    ],
+    liveUrl: 'https://engineroombali.com/',
+  },
+  {
     id: 'watercress-bali',
     name: 'WATERCRESS BALI',
     year: '2026',
