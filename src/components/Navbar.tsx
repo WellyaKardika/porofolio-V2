@@ -13,6 +13,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLUListElement>(null);
@@ -23,6 +24,7 @@ export default function Navbar() {
   const toggleMenu = contextSafe(() => {
     if (!menuOpen) {
       setMenuOpen(true);
+      setIsOpen(true);
       gsap.to(overlayRef.current, {
         clipPath: "circle(150% at 100% 0%)",
         duration: 0.8,
@@ -39,6 +41,7 @@ export default function Navbar() {
         { y: 0, opacity: 1, duration: 0.5, delay: 0.6, ease: "power2.out" }
       );
     } else {
+      setIsOpen(false);
       gsap.to(overlayRef.current, {
         clipPath: "circle(0% at 100% 0%)",
         duration: 0.8,
@@ -49,6 +52,7 @@ export default function Navbar() {
   });
 
   const closeMenu = contextSafe(() => {
+    setIsOpen(false);
     gsap.to(overlayRef.current, {
       clipPath: "circle(0% at 100% 0%)",
       duration: 0.8,
@@ -76,9 +80,9 @@ export default function Navbar() {
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
-            <span className={`block w-[30px] h-[2px] bg-white rounded-sm transition-all duration-300 origin-center ${menuOpen ? 'translate-y-[8px] rotate-45' : ''}`} />
-            <span className={`block w-[20px] h-[2px] bg-white rounded-sm transition-all duration-300 origin-right self-end ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block w-[30px] h-[2px] bg-white rounded-sm transition-all duration-300 origin-center ${menuOpen ? '-translate-y-[8px] -rotate-45' : ''}`} />
+            <span className={`block w-[30px] h-[2px] bg-white rounded-sm transition-all duration-300 origin-center ${isOpen ? 'translate-y-[8px] rotate-45' : ''}`} />
+            <span className={`block w-[20px] h-[2px] bg-white rounded-sm transition-all duration-300 origin-right self-end ${isOpen ? 'opacity-0 scale-x-0' : ''}`} />
+            <span className={`block w-[30px] h-[2px] bg-white rounded-sm transition-all duration-300 origin-center ${isOpen ? '-translate-y-[8px] -rotate-45' : ''}`} />
           </button>
         </div>
       </nav>
