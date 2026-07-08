@@ -21,7 +21,7 @@ export const projects: ProjectData[] = [
     techLogos: [
       '/icon/Wordpress.svg',
       '/icon/acf.svg',
-      '/icon/figma.svg',
+      '/icon/JS.svg',
     ],
     thumbnail: '/Project/Engine-Room/ER-1.webp',
     heroImage: '/Project/Engine-Room/ER-1.webp',
