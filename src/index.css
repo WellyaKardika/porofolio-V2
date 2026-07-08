@@ -13,11 +13,28 @@ html, body, #root {
   font-family: 'Kanit', sans-serif;
 }
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: initial;
 }
 
+html.lenis, html.lenis body {
+  height: auto;
+}
 
-.hero-heading {
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}.hero-heading {
   background: linear-gradient(180deg, #FFFFFF 0%, #E6E6E6 100%);
   -webkit-background-clip: text;
   background-clip: text;
