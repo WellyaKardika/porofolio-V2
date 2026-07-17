@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 
@@ -60,6 +61,7 @@ const App: React.FC = () => {
         <Route path="/project" element={<Home />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
+      <SpeedInsights />
     </div>
   );
 };
