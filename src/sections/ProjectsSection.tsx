@@ -4,14 +4,26 @@ import RevealText from '../components/RevealText';
 import { projects, ProjectData } from '../data/projects';
 import Button from '../components/Button';
 
+const globalMouse = { x: -1000, y: -1000, active: false };
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('mousemove', (e) => {
+    globalMouse.x = e.clientX;
+    globalMouse.y = e.clientY;
+    globalMouse.active = true;
+  });
+}
+
 const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ project, index }) => {
   const { navigateWithTransition } = useTransition();
-  const [cursorVisible, setCursorVisible] = useState(false);
-  const [displayPos, setDisplayPos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const isHoveredRef = useRef(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const targetRef = useRef({ x: 0, y: 0 });
-  const posRef = useRef({ x: 0, y: 0 });
-  const rafRef = useRef<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
+
+  const currentPos = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef<number>(0);
 
   // Detect desktop (mouse device + min-width 1024px)
   useEffect(() => {
@@ -25,15 +37,51 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
   // Only run RAF loop on desktop
   useEffect(() => {
     if (!isDesktop) return;
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+    const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
+
     const animate = () => {
-      posRef.current.x = lerp(posRef.current.x, targetRef.current.x, 0.1);
-      posRef.current.y = lerp(posRef.current.y, targetRef.current.y, 0.1);
-      setDisplayPos({ x: posRef.current.x, y: posRef.current.y });
-      rafRef.current = requestAnimationFrame(animate);
+      if (!globalMouse.active || !containerRef.current || !circleRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const isInside = 
+        globalMouse.x >= rect.left && 
+        globalMouse.x <= rect.right &&
+        globalMouse.y >= rect.top && 
+        globalMouse.y <= rect.bottom;
+
+      if (isInside !== isHoveredRef.current) {
+        isHoveredRef.current = isInside;
+        setIsHovered(isInside);
+        
+        if (isInside) {
+          // Snap instantly when entering
+          currentPos.current.x = globalMouse.x;
+          currentPos.current.y = globalMouse.y;
+          const circleX = globalMouse.x - rect.left;
+          const circleY = globalMouse.y - rect.top;
+          circleRef.current.style.transform = `translate(${circleX}px, ${circleY}px) translate(-50%, -50%)`;
+        }
+      }
+
+      if (isInside) {
+        currentPos.current.x = lerp(currentPos.current.x, globalMouse.x, 0.15);
+        currentPos.current.y = lerp(currentPos.current.y, globalMouse.y, 0.15);
+
+        const circleX = currentPos.current.x - rect.left;
+        const circleY = currentPos.current.y - rect.top;
+        circleRef.current.style.transform = `translate(${circleX}px, ${circleY}px) translate(-50%, -50%)`;
+      }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+    };
   }, [isDesktop]);
 
   const handleProjectClick = (e: React.MouseEvent) => {
@@ -41,45 +89,16 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
     navigateWithTransition(`/project/${project.id}`);
   };
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDesktop) return;
-    targetRef.current = { x: e.clientX, y: e.clientY };
-    setCursorVisible(true);
-  }, [isDesktop]);
-
-  const handleMouseLeave = useCallback(() => {
-    if (!isDesktop) return;
-    setCursorVisible(false);
-  }, [isDesktop]);
 
   return (
     <RevealText delay={0.3} className="w-full">
-      {/* Custom cursor — only rendered on desktop (pointer:fine + ≥1024px) */}
-      {isDesktop && (
-        <div
-          className="fixed pointer-events-none z-[9990] flex items-center justify-center rounded-full bg-white text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs"
-          style={{
-            width: 90,
-            height: 90,
-            left: displayPos.x,
-            top: displayPos.y,
-            transform: `translate(-50%, -50%) scale(${cursorVisible ? 1 : 0})`,
-            opacity: cursorVisible ? 1 : 0,
-            transition: 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
-          }}
-        >
-          View
-        </div>
-      )}
-
       <div
         className="group cursor-pointer flex flex-col"
         onClick={handleProjectClick}
       >
         <div
-          className="relative overflow-hidden mb-6 md:mb-8 bg-zinc-900 aspect-[16/9]"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+          ref={containerRef}
+          className={`relative overflow-hidden mb-6 md:mb-8 bg-zinc-900 aspect-[16/9] ${isDesktop ? 'cursor-none' : ''}`}
         >
           <img
             src={project.thumbnail}
@@ -90,6 +109,24 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
           />
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          {/* Morphing Cursor — only rendered on desktop (pointer:fine + ≥1024px) */}
+          {isDesktop && (
+            <div
+              ref={circleRef}
+              className="absolute top-0 left-0 pointer-events-none rounded-full bg-white overflow-hidden z-50 flex items-center justify-center"
+              style={{
+                width: isHovered ? 90 : 0,
+                height: isHovered ? 90 : 0,
+                transition: "width 0.25s cubic-bezier(0.33, 1, 0.68, 1), height 0.25s cubic-bezier(0.33, 1, 0.68, 1)",
+                willChange: "transform, width, height",
+              }}
+            >
+              <span className="text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs whitespace-nowrap">
+                View
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col px-2">
