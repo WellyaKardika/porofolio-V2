@@ -7,19 +7,117 @@ import Footer from '../sections/Footer';
 import Button from '../components/Button';
 import { useTransition } from '../components/TransitionContext';
 
+const globalMouse = { x: -1000, y: -1000, active: false };
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('mousemove', (e) => {
+    globalMouse.x = e.clientX;
+    globalMouse.y = e.clientY;
+    globalMouse.active = true;
+  });
+}
+
+const GalleryItem: React.FC<{ img: string; index: number; projectName: string; onClick: () => void; isDesktop: boolean }> = ({ img, index, projectName, onClick, isDesktop }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const isHoveredRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
+  const currentPos = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef<number>(0);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+    const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
+
+    const animate = () => {
+      if (!globalMouse.active || !containerRef.current || !circleRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const isInside = 
+        globalMouse.x >= rect.left && 
+        globalMouse.x <= rect.right &&
+        globalMouse.y >= rect.top && 
+        globalMouse.y <= rect.bottom;
+
+      if (isInside !== isHoveredRef.current) {
+        isHoveredRef.current = isInside;
+        setIsHovered(isInside);
+        
+        if (isInside) {
+          // Snap instantly when entering
+          currentPos.current.x = globalMouse.x;
+          currentPos.current.y = globalMouse.y;
+          const circleX = globalMouse.x - rect.left;
+          const circleY = globalMouse.y - rect.top;
+          circleRef.current.style.transform = `translate(${circleX}px, ${circleY}px) translate(-50%, -50%)`;
+        }
+      }
+
+      if (isInside) {
+        currentPos.current.x = lerp(currentPos.current.x, globalMouse.x, 0.15);
+        currentPos.current.y = lerp(currentPos.current.y, globalMouse.y, 0.15);
+
+        const circleX = currentPos.current.x - rect.left;
+        const circleY = currentPos.current.y - rect.top;
+        circleRef.current.style.transform = `translate(${circleX}px, ${circleY}px) translate(-50%, -50%)`;
+      }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+    };
+  }, [isDesktop]);
+
+  return (
+    <div className="break-inside-avoid mb-4 md:mb-6 rounded-3xl overflow-hidden">
+      <div
+        ref={containerRef}
+        className={`relative cursor-pointer group/img ${isDesktop ? 'cursor-none' : ''}`}
+        onClick={onClick}
+      >
+        <img
+          src={img}
+          alt={`${projectName} detail ${index + 1}`}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-auto block transition-transform duration-500 group-hover/img:scale-105"
+        />
+        <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-all duration-300" />
+        
+        {isDesktop && (
+          <div
+            ref={circleRef}
+            className="absolute top-0 left-0 pointer-events-none rounded-full bg-white overflow-hidden z-50 flex items-center justify-center"
+            style={{
+              width: isHovered ? 90 : 0,
+              height: isHovered ? 90 : 0,
+              transition: "width 0.25s cubic-bezier(0.33, 1, 0.68, 1), height 0.25s cubic-bezier(0.33, 1, 0.68, 1)",
+              willChange: "transform, width, height",
+            }}
+          >
+            <span className="text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs whitespace-nowrap">
+              View
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { navigateWithTransition } = useTransition();
   const project = projects.find((p) => p.id === id);
   const [showContent, setShowContent] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [galleryCursorVisible, setGalleryCursorVisible] = useState(false);
-  const [galleryDisplayPos, setGalleryDisplayPos] = useState({ x: 0, y: 0 });
   const [isDesktop, setIsDesktop] = useState(false);
-  const galleryTargetRef = useRef({ x: 0, y: 0 });
-  const galleryPosRef = useRef({ x: 0, y: 0 });
-  const galleryRafRef = useRef<number>(0);
-  const galleryRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Detect desktop (mouse device + min-width 1024px)
   useEffect(() => {
@@ -30,30 +128,6 @@ const ProjectDetail: React.FC = () => {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  // Only run RAF loop on desktop
-  useEffect(() => {
-    if (!isDesktop) return;
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-    const animate = () => {
-      galleryPosRef.current.x = lerp(galleryPosRef.current.x, galleryTargetRef.current.x, 0.1);
-      galleryPosRef.current.y = lerp(galleryPosRef.current.y, galleryTargetRef.current.y, 0.1);
-      setGalleryDisplayPos({ x: galleryPosRef.current.x, y: galleryPosRef.current.y });
-      galleryRafRef.current = requestAnimationFrame(animate);
-    };
-    galleryRafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(galleryRafRef.current);
-  }, [isDesktop]);
-
-  const handleGalleryMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDesktop) return;
-    galleryTargetRef.current = { x: e.clientX, y: e.clientY };
-    setGalleryCursorVisible(true);
-  }, [isDesktop]);
-
-  const handleGalleryMouseLeave = useCallback(() => {
-    if (!isDesktop) return;
-    setGalleryCursorVisible(false);
-  }, [isDesktop]);
 
   const getLogoName = (path: string) => {
     const filename = path.split('/').pop() ?? '';
@@ -188,46 +262,15 @@ const ProjectDetail: React.FC = () => {
               {/* Image Gallery — masonry columns */}
               {project.gallery.length > 0 && (
                 <div className="columns-1 md:columns-2 gap-4 md:gap-6 mb-24 md:mb-32">
-                  {/* Custom cursor — hanya render di desktop */}
-                  {isDesktop && (
-                    <div
-                      className="fixed pointer-events-none z-[9990] flex items-center justify-center rounded-full bg-white text-[#0C0C0C] font-semibold uppercase tracking-widest text-xs"
-                      style={{
-                        width: 90,
-                        height: 90,
-                        left: galleryDisplayPos.x,
-                        top: galleryDisplayPos.y,
-                        transform: `translate(-50%, -50%) scale(${galleryCursorVisible ? 1 : 0})`,
-                        opacity: galleryCursorVisible ? 1 : 0,
-                        transition: 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                      }}
-                    >
-                      View
-                    </div>
-                  )}
-
                   {project.gallery.map((img, i) => (
-                    <div
+                    <GalleryItem
                       key={i}
-                      className="break-inside-avoid mb-4 md:mb-6 rounded-3xl overflow-hidden"
-                    >
-                      <div
-                        ref={el => { galleryRefs.current[i] = el; }}
-                        className="relative cursor-pointer group/img"
-                        onClick={() => setLightboxIndex(i)}
-                        onMouseMove={handleGalleryMouseMove}
-                        onMouseLeave={handleGalleryMouseLeave}
-                      >
-                        <img
-                          src={img}
-                          alt={`${project.name} detail ${i + 1}`}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-auto block transition-transform duration-500 group-hover/img:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-all duration-300" />
-                      </div>
-                    </div>
+                      img={img}
+                      index={i}
+                      projectName={project.name}
+                      onClick={() => setLightboxIndex(i)}
+                      isDesktop={isDesktop}
+                    />
                   ))}
                 </div>
               )}
