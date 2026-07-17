@@ -1,6 +1,5 @@
 # Wellya Kardika Portfolio V2
-
-A modern, high-end 3D creator & developer portfolio built with React and Vite. Features a brutalist monochrome design, smooth scroll animations, and interactive typography.
+portfolio built with React and Vite. Features a brutalist monochrome design, smooth scroll animations, and interactive typography.
 
 ## ✨ Features
 
